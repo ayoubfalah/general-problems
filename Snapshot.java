@@ -3,18 +3,15 @@ import java.util.ArrayList;
 public class Snapshot 
 {
     private ArrayList<Integer> data;
-    private ArrayList<Integer> mem;
     
     public Snapshot(ArrayList<Integer> data)
     {
-        this.data = data;
-        mem = new ArrayList(this.data);
-        
+        this.data = new ArrayList(data);        
     }
     
     public ArrayList<Integer> restore()
     {
-        return new ArrayList(mem);
+        return new ArrayList(data);
     }
     
     public static void main(String[] args)
