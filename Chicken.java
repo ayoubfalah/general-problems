@@ -21,13 +21,8 @@ class Chicken implements IBird, Callable<IBird> {
         System.out.println(chicken instanceof IBird);
         Egg egg = chicken.Lay();
         System.out.println(egg);
-        try 
-        {
-            egg.hatch();            
-        } catch (Exception e)
-        {
-            System.out.println("Error: " + e.getMessage());
-        }
+        egg.hatch(); // first hatch -> valid
+        egg.hatch(); // second hatch invalid
     }
     
     @Override
@@ -46,6 +41,7 @@ class Chicken implements IBird, Callable<IBird> {
 class Egg 
 {
     // Maintains the state of an Egg
+    Callable<IBird> nextGenerationBird;
     private boolean isHatched;
     
     /**
@@ -53,21 +49,16 @@ class Egg
      */
     public Egg(Callable<IBird> bird)
     {
-        try 
-        {
-            bird.call();
-            isHatched = true;   
-        } catch (Exception ex) 
-        {
-            System.err.println(ex.getMessage());
-        }
+        nextGenerationBird = bird;
     }
     
     public IBird hatch() throws Exception 
     {
         if (!isHatched)
         {
-            return new Chicken();
+            IBird newBird = nextGenerationBird.call();
+            isHatched = true;
+            return newBird;
         }else
         {
             throw new IllegalStateException("An Egg can't hatch twice.");
