@@ -1,6 +1,6 @@
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 public class TreeLeaves 
 {
@@ -62,7 +62,7 @@ public class TreeLeaves
     public static int computeNumOfLeavesFaster2(int[] parent) 
     {
         int n = parent.length;
-        Set<Integer> set = new TreeSet();
+        Set<Integer> set = new HashSet();
         for (int i = 0; i < n; i++) 
         {
             set.add(parent[i]);            
