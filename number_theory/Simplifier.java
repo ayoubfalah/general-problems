@@ -19,7 +19,7 @@ public class Simplifier
         writeResult(simplify(primeFactors));        
     }
     
-    private static void writeResult(Map<Integer, Integer> result)
+    public static void writeResult(Map<Integer, Integer> result)
     {
         StringBuilder sb = new StringBuilder();
         
