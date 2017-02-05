@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- *
+/** 
  * @author ayoubfalah
  */
 public class Simplifier 
@@ -32,7 +31,7 @@ public class Simplifier
             if (Integer.compare(power, 1) > 0)
             {
                 sb.append(prime);
-                sb.append(" ^ ");
+                sb.append("^");
                 sb.append(power);
                 sb.append(" * ");                
             }else {
@@ -43,13 +42,12 @@ public class Simplifier
         // The last " * " is superfluous
         sb.delete(sb.length() - 3, sb.length() - 1);
         System.out.println(sb);
-    }
-    
+    }    
     
     public static Map simplify(List primeFactors) 
     {
         int n = primeFactors.size();
-        Map result = new HashMap<Integer, Integer>();
+        Map result = new HashMap<>();
         int i = 0;
         while (i < n) 
         {
