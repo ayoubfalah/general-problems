@@ -6,7 +6,7 @@ import java.util.Stack;
 public class GrahamScan {
 
     /**
-     * Computing the convex hull of a point set in the plan
+     * Computing the convex hull of a point set in the plane
      *
      * @param A array representing the point set
      * @return stack that contains the vertices of the convex hull
