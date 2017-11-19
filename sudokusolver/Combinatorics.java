@@ -1,6 +1,8 @@
 package sudokusolver;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -47,6 +49,43 @@ public class Combinatorics
             }            
         }        
         return pairs;
+    }
+    
+    public static List<Integer[]> findAllPermutations(Integer[] word)
+    {
+        // out starts as empty ArrayList
+        List<Integer[]> out = new ArrayList();
+        // for i from 0 to (word.length - 1):
+        for (int i = 0; i <= word.length - 1; i++) 
+        {
+            //transposition = transpose(word, 1, i)
+            Integer[] transposition = transpose(word, 0, i);
+            // Add transposition to out
+            out.add(transposition);
+            
+            // for i from 1 to (word.length - 2):
+            for (int j = 1; j <= word.length - 2; j++)
+            {
+                // transposition = transpose(word, 1, i)
+                transposition = transpose(transposition, j, j+1);
+                // Add transposition to out
+                out.add(transposition);                
+            }
+        }                
+        // out is the answer
+        return out;
+        
+        
+    }
+
+    private static Integer[] transpose(Integer[] word, int i, int j) 
+    {
+        Integer[] transosition = word.clone();
+        int temp = word[i];
+        transosition[i] = transosition[j];
+        transosition[j] = temp;
+        
+        return transosition;
     }
 
 }
