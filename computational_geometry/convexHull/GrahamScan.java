@@ -38,10 +38,14 @@ public class GrahamScan {
     }
 
     public static void main(String[] args) {
-        Point A[] = {new Point(0, 30) , new Point(50, 40), new Point(30, 60),
-                     new Point(20, 0) , new Point(15, 25), new Point(55, 20),
-                     new Point(50, 10), new Point(70, 30)
-                    };
+//        Point A[] = {new Point(0, 30) , new Point(50, 40), new Point(30, 60),
+//                     new Point(20, 0) , new Point(15, 25), new Point(55, 20),
+//                     new Point(50, 10), new Point(70, 30)
+//                    };
+        Point A[] = {new Point(1, 2) , new Point(1, -1), new Point(1, 3),
+                     new Point(-1, 1)};
+//        Point A[] = {new Point(-1, 2) , new Point(2, 3), new Point(-1, -1),
+//                     new Point(1, 0)};
 
         Stack<Point> convexHull = computeConvexHull(A);
         int numberOfVerticesInConvexHull = convexHull.size();
