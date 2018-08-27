@@ -10,7 +10,7 @@ public class ThreeSum
 {
     public static void main(String[] args) 
     {
-        System.out.println(threeSumNaive(new int[]{0, 2, -2, -1, 1,}));
+        System.out.println(threeSum(new int[]{0, 2, -2, -1, 1,}));
         
     }
     /**
@@ -19,7 +19,7 @@ public class ThreeSum
      * @return true iff there are i, j, and k such that ai + aj + ak = 0
      * The case where ai = aj = ak = 0 is excluded.
      */
-    private static boolean threeSumNaive(int[] a)
+    private static boolean threeSum(int[] a)
     {
         Arrays.sort(a);
         if (Arrays.binarySearch(a, 0) >= 0) return twoSum(a);
