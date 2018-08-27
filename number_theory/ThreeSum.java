@@ -43,13 +43,8 @@ public class ThreeSum
         {
             for (int j = 0; j <= i; j++) 
             {
-                for (int k = 0; k < n; k++) 
-                {
-                    if (a[i] + a[j] + a[k] == 0)
-                    {
-                        return true;
-                    }                    
-                }                
+                int sum = a[i] + a[j];
+                if (Arrays.binarySearch(a, -sum) >= 0) return true;              
             }            
         }
         return false;
