@@ -4,6 +4,7 @@ import utility.classes.Pair;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 /**
  *
@@ -17,19 +18,27 @@ public class Combinatorics
      * @return all words of length 2 over the given alphabet. This is equivalent
      *         to the cartesian product of the set alphabet with itself
      */
-    public static ArrayList<Pair> product(int[] alphabet) 
+    public static List<Stack> product(int[] alphabet, int k) 
     {
-        ArrayList<Pair> pairs = new ArrayList();
-        int n = alphabet.length;
-        for (int i = 0; i < n; i++) 
+        List<Stack> c = new ArrayList(); // The set of sequences of order k
+        Stack s = new Stack(); // A sequence of elements
+        product(alphabet, k, c, s);
+        
+        return c;
+    }
+    
+    private static void product(int[] alphabet, int k, List c, Stack s)
+    {
+        if (k == 0) c.add(s.clone());
+        else
         {
-            for (int j = 0; j < n; j++)
+            for (int item : alphabet) 
             {
-                Pair pair = new Pair(alphabet[i], alphabet[j]);
-                pairs.add(pair);                
-            }            
-        }        
-        return pairs;
+                s.push(item);
+                product(alphabet, k - 1, c, s);
+                s.pop();                
+            }
+        }
     }
     
     /**

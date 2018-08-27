@@ -22,6 +22,7 @@ public class ThreeSum
     private static boolean threeSum(int[] a)
     {
         Arrays.sort(a);
+        if (a[0] == 0) return false; // a is a subset of natural numbers.
         if (Arrays.binarySearch(a, 0) >= 0) return twoSum(a);
         else return strictThreeSum(a);
     }

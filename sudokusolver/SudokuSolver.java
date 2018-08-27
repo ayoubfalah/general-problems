@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Stack;
 import utility.classes.Pair;
 
 /**
@@ -51,14 +52,14 @@ public class SudokuSolver
      */
     static void exactlyOneDigitForEachEntry()
     {
-        ArrayList<Pair> pairs = Combinatorics.product(DIGITS);
+        List<Stack> pairs = Combinatorics.product(DIGITS, 2);
         List<List<Integer>> clauses = new ArrayList();
-        for (Pair<Integer> pair : pairs)
+        for (Stack<Integer> pair : pairs)
         {
             ArrayList<Integer> literals = new ArrayList();
             for (int k : DIGITS) 
             {
-                int literal = (100 * pair.getA()) + (10 * pair.getB()) + k;
+                int literal = (100 * pair.get(0)) + (10 * pair.get(1)) + k;
                 literals.add(literal);                
             }
             List<List<Integer>> expression = exactlyOneOf(literals);
@@ -69,13 +70,13 @@ public class SudokuSolver
     // k appears exactly one in each row
     static void exactlyOneDigitForEachRow()
     {
-        ArrayList<Pair> pairs = Combinatorics.product(DIGITS);
-        for (Pair<Integer> pair : pairs)
+        List<Stack> pairs = Combinatorics.product(DIGITS, 2);
+        for (Stack<Integer> pair : pairs)
         {
             ArrayList<Integer> literals = new ArrayList();
             for (int k : DIGITS) 
             {
-                int literal = 100*pair.getA() + 10*k + pair.getB();
+                int literal = 100*pair.get(0) + 10*k + pair.get(1);
                 literals.add(literal);
                 
             }
@@ -87,13 +88,13 @@ public class SudokuSolver
     // k appears exactly one in each column
     static void exactlyOneDigitForEachColumn()
     {
-        ArrayList<Pair> pairs = Combinatorics.product(DIGITS);
-        for (Pair<Integer> pair : pairs)
+        List<Stack> pairs = Combinatorics.product(DIGITS, 2);
+        for (Stack<Integer> pair : pairs)
         {
             ArrayList<Integer> literals = new ArrayList();
             for (int k : DIGITS) 
             {
-                int literal = 100*k + 10*pair.getA() + pair.getB();
+                int literal = 100*k + 10*pair.get(0) + pair.get(1);
                 literals.add(literal);
                 
             }
@@ -105,18 +106,18 @@ public class SudokuSolver
     // k appears exactly once in a 3x3 block
     static void exactlyOneDigitForEach3kBlock()
     {
-        ArrayList<Pair> pairs = Combinatorics.product(new int[]{1, 4, 7});
-        ArrayList<Pair> deltas = Combinatorics.product(new int[]{0, 1, 2});
+        List<Stack> pairs = Combinatorics.product(new int[]{1, 4, 7}, 2);
+        List<Stack> deltas = Combinatorics.product(new int[]{0, 1, 2}, 2);
         
-        for (Pair<Integer> pair : pairs)
+        for (Stack<Integer> pair : pairs)
         {
             for (int k : DIGITS)
             {
                 ArrayList<Integer> literals = new ArrayList();
-                for (Pair<Integer> delta : deltas) 
+                for (Stack<Integer> delta : deltas) 
                 {
-                    int literal = 100*(pair.getA() + delta.getA()) + 
-                                  10*(pair.getB() + delta.getB()) + k;
+                    int literal = 100*(pair.get(0) + delta.get(0)) + 
+                                  10*(pair.get(1) + delta.get(1)) + k;
                     literals.add(literal);
                 }  
                 List<List<Integer>> expression = exactlyOneOf(literals);
