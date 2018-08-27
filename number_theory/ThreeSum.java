@@ -29,7 +29,6 @@ public class ThreeSum
                     if ((a[i] + a[j] + a[k] == 0) && 
                             !((a[i] == a[j]) && (a[j] == a[k]) && (a[k] == 0)))
                     {
-                        System.out.println(a[i] + " " + a[j] + " " + a[k]);
                         return true;
                     }                    
                 }                
