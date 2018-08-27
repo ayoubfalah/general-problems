@@ -15,8 +15,9 @@ public class Combinatorics
     /**
      * 
      * @param alphabet a finite set
-     * @return all words of length 2 over the given alphabet. This is equivalent
-     *         to the cartesian product of the set alphabet with itself
+     * @param k a natural number k
+     * @return all words of length k over the given alphabet. This is equivalent
+     *         to the n-fold cartesian product of the set alphabet with itself
      */
     public static List<Stack> product(int[] alphabet, int k) 
     {
