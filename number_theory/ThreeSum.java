@@ -1,5 +1,7 @@
 package number_theory;
 
+import java.util.Arrays;
+
 /**
  *
  * @author ayoubfalah
@@ -19,6 +21,23 @@ public class ThreeSum
      */
     private static boolean threeSumNaive(int[] a)
     {
+        Arrays.sort(a);
+        if (Arrays.binarySearch(a, 0) >= 0) return twoSum(a);
+        else return strictThreeSum(a);
+    }
+    
+    public static boolean twoSum(int a[])
+    {
+        for (int i = 0; i < a.length; i++) 
+        {
+            if (Arrays.binarySearch(a, (-1)*a[i]) >= 0)
+                return true;            
+        }
+        return false;
+    }
+    
+    public static boolean strictThreeSum(int[] a)
+    {
         int n = a.length;
         for (int i = 0; i < n; i++) 
         {
@@ -26,8 +45,7 @@ public class ThreeSum
             {
                 for (int k = 0; k < n; k++) 
                 {
-                    if ((a[i] + a[j] + a[k] == 0) && 
-                            !((a[i] == a[j]) && (a[j] == a[k]) && (a[k] == 0)))
+                    if (a[i] + a[j] + a[k] == 0)
                     {
                         return true;
                     }                    
